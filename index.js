@@ -13,6 +13,9 @@ app.use(express.json());// we recive data from backend as json
 // all api are on router page 
 app.use(router);
 
+if(process.env.NODE_ENV == "production"){
+    app.use(express.static("client/build"));
+}
 app.listen(PORT,(req,res)=>{ 
     console.log(`Listening......................${PORT}`);
 })
