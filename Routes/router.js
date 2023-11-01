@@ -16,7 +16,7 @@ const transporter=nodemailer.createTransport({
 // Register user details
 router.post('/register',async(req,res)=>{  
 const{FirstName,LastName,Email,Phone,Message}=req.body; //which are reciving what ever user will fill in contact form 
-console.log(FirstName);
+// console.log(FirstName);
 if(!FirstName|| !LastName|| !Email){   
    res.status(401).json({status:401,error:"All input require"})
 }  
@@ -29,11 +29,11 @@ else{
     } 
     try {
         const preuser=await users.findOne({Email:Email}); 
-        console.log(preuser);
+        // console.log(preuser);
         if(preuser){ 
             // when user already exist in database then we do not store student in database but simply send a mail to user and store data of user in database
             const userMessage=await preuser.MessageSave(Message);  
-            console.log(userMessage);   
+            // console.log(userMessage);   
             transporter.sendMail(mailOptions,(error,info)=>{ 
                 if (error) {
                     console.log(error);
