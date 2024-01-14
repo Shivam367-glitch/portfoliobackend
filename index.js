@@ -16,6 +16,6 @@ app.use(router);
 if(process.env.NODE_ENV == "production"){
     app.use(express.static("client/build"));
 }
-app.listen(PORT,(req,res)=>{ 
+app.listen(PORT,()=>{ 
     console.log(`Listening......................${PORT}`);
 })
