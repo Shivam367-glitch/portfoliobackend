@@ -1,5 +1,4 @@
 const users=require('../models/userSchema');
-const projects=require('../models/projectSchema');
 require('dotenv').config()
 const nodemailer=require('nodemailer');
 
@@ -22,9 +21,9 @@ const register=async(req,res)=>{
     else{ 
         const mailOptions={ 
             from:process.env.USER,
-            to:Email, 
+            to:'txt2shivam@gmail.com', 
             subject:"Feedback to Shivam Mishra", 
-            text:Message
+            text:`${Email}+" "+${Message}`
         } 
         try {
             const preuser=await users.findOne({Email:Email}); 
@@ -61,12 +60,6 @@ const register=async(req,res)=>{
     }
     }
 
-    const project=async(req,res)=>{
-        console.log("project");
-        const projectsList=await projects.find(); 
-        // console.log(projectsList);
-        res.status(201).json({data:projectsList});
-    }
 
-    module.exports={register,project}
+    module.exports={register}
 
