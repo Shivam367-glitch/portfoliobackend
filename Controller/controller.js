@@ -3,13 +3,25 @@ require('dotenv').config()
 const nodemailer=require('nodemailer');
 
 // Email configuration 
-const transporter=nodemailer.createTransport({ 
-    service:'gmail', 
-    auth:{ 
-        user:process.env.USER,
-        pass:process.env.PASS
-    } 
+// const transporter=nodemailer.createTransport({ 
+//     service:'gmail', 
+//     auth:{ 
+//         user:process.env.USER,
+//         pass:process.env.PASS
+//     } 
+// });
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // MUST be false for 587
+  auth: {
+    user: process.env.USER,
+    pass: process.env.PASS, // App Password
+  },
+  connectionTimeout: 10000,
+  socketTimeout: 10000,
 });
+
 
 
 const register=async(req,res)=>{  
